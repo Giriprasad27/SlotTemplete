@@ -1,0 +1,19 @@
+{
+    "name": "SlotTemplate.Game",
+    "rootNamespace": "SlotTemplate.Game",
+    "references": [
+        "SlotTemplate.Core",
+        "SlotTemplate.Data",
+        "SlotTemplate.Presentation",
+        "SlotTemplate.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

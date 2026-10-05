@@ -1,0 +1,16 @@
+{
+    "name": "SlotTemplate.Data",
+    "rootNamespace": "SlotTemplate.Data",
+    "references": [
+        "SlotTemplate.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

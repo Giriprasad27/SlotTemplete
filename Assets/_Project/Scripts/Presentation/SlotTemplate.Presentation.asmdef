@@ -1,0 +1,17 @@
+{
+    "name": "SlotTemplate.Presentation",
+    "rootNamespace": "SlotTemplate.Presentation",
+    "references": [
+        "SlotTemplate.Core",
+        "SlotTemplate.Data"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
