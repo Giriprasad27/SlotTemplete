@@ -15,6 +15,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
@@ -90,6 +91,10 @@ namespace SlotTemplate.Editor
 
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 
+            // Open the new scene before creating any assets: NewScene unloads unused assets, which would
+            // drop the just-created settings and prefab and leave null references in the scene.
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
+
             EnsureFolder(GameFolder);
             EnsureFolder(MaterialsFolder);
 
@@ -106,7 +111,7 @@ namespace SlotTemplate.Editor
             EditorUtility.SetDirty(definition);
 
             var symbolPrefab = CreateSymbolPrefab();
-            BuildScene(definition, animation, symbolPrefab);
+            BuildScene(scene, definition, animation, symbolPrefab);
 
             AssetDatabase.SaveAssets();
             Debug.Log($"[Slot Template] Sample game built at {ScenePath}. Press Play to spin.");
@@ -216,10 +221,8 @@ namespace SlotTemplate.Editor
 
         // ---------- Scene ----------
 
-        private static void BuildScene(SlotDefinition definition, ReelAnimationSettings animation, SymbolView symbolPrefab)
+        private static void BuildScene(Scene scene, SlotDefinition definition, ReelAnimationSettings animation, SymbolView symbolPrefab)
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
-
             var camera = Camera.main;
             if (camera != null)
             {
@@ -308,16 +311,17 @@ namespace SlotTemplate.Editor
             var resources = new TMP_DefaultControls.Resources();
             var t = canvasGo.transform;
 
-            var balance = CreateLabel(t, resources, "Balance", new Vector2(0f, 0f), new Vector2(180f, 90f), new Vector2(320f, 110f), 40f);
-            var bet = CreateLabel(t, resources, "Bet", new Vector2(0.36f, 0f), new Vector2(0f, 90f), new Vector2(200f, 110f), 40f);
-            var win = CreateLabel(t, resources, "Win", new Vector2(0.6f, 0f), new Vector2(0f, 90f), new Vector2(320f, 110f), 40f);
+            // Bottom bar, positioned by fractions of the screen width so it holds up on any aspect ratio.
+            var balance = CreateLabel(t, resources, "Balance", new Vector2(0.12f, 0f), new Vector2(0f, 90f), new Vector2(260f, 110f), 40f);
+            var bet = CreateLabel(t, resources, "Bet", new Vector2(0.34f, 0f), new Vector2(0f, 90f), new Vector2(180f, 110f), 40f);
+            var win = CreateLabel(t, resources, "Win", new Vector2(0.55f, 0f), new Vector2(0f, 90f), new Vector2(260f, 110f), 40f);
             var message = CreateLabel(t, resources, "Message", new Vector2(0.5f, 1f), new Vector2(0f, -170f), new Vector2(900f, 90f), 40f);
             message.color = new Color(1f, 0.85f, 0.3f);
 
-            var betDown = CreateButton(t, resources, "BetDown", "-", new Vector2(0.36f, 0f), new Vector2(-150f, 90f), new Vector2(80f, 80f));
-            var betUp = CreateButton(t, resources, "BetUp", "+", new Vector2(0.36f, 0f), new Vector2(150f, 90f), new Vector2(80f, 80f));
-            var autoplay = CreateButton(t, resources, "Autoplay", "AUTO", new Vector2(1f, 0f), new Vector2(-440f, 100f), new Vector2(160f, 100f));
-            var spin = CreateButton(t, resources, "Spin", "SPIN", new Vector2(1f, 0f), new Vector2(-200f, 100f), new Vector2(260f, 120f));
+            var betDown = CreateButton(t, resources, "BetDown", "-", new Vector2(0.34f, 0f), new Vector2(-130f, 90f), new Vector2(80f, 80f));
+            var betUp = CreateButton(t, resources, "BetUp", "+", new Vector2(0.34f, 0f), new Vector2(130f, 90f), new Vector2(80f, 80f));
+            var autoplay = CreateButton(t, resources, "Autoplay", "AUTO", new Vector2(0.73f, 0f), new Vector2(0f, 100f), new Vector2(160f, 100f));
+            var spin = CreateButton(t, resources, "Spin", "SPIN", new Vector2(0.9f, 0f), new Vector2(0f, 100f), new Vector2(240f, 120f));
             spin.GetComponent<Image>().color = new Color(0.2f, 0.75f, 0.3f);
 
             SetReference(hud, "spinButton", spin);
