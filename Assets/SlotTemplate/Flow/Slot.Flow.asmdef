@@ -1,0 +1,17 @@
+{
+    "name": "Slot.Flow",
+    "rootNamespace": "SlotTemplate.Flow",
+    "references": [
+        "Slot.Core",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

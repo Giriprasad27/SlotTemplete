@@ -1,0 +1,19 @@
+{
+    "name": "Slot.Features",
+    "rootNamespace": "SlotTemplate.Features",
+    "references": [
+        "Slot.Core",
+        "Slot.Flow",
+        "UniTask",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

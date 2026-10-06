@@ -1,0 +1,21 @@
+{
+    "name": "Slot.Bootstrap",
+    "rootNamespace": "SlotTemplate.Bootstrap",
+    "references": [
+        "Slot.Core",
+        "Slot.Flow",
+        "Slot.Features",
+        "Slot.Presentation",
+        "Slot.Debug",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
